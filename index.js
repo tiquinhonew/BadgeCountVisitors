@@ -6,28 +6,28 @@ const port = 3000;
 
 // Cria uma tabela no SQLite para armazenar informações de visitantes
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database(":memory:");
+const db = new sqlite3.Database("./badgeCount.db");
 
 db.serialize(function () {
-  db.run("CREATE TABLE visitors (ip TEXT, date TEXT)");
+  db.run("CREATE TABLE IF NOT EXISTS visitors (ip TEXT, date TEXT, pageid TEXT)");
 });
 
 // Cria uma rota que retorna o número total de visitantes
 
 app.get("/badge", (req, res) => {
-  var { color, labelColor, label, style } = req.query;
+  var { color, labelColor, label, style, pageId } = req.query;
   const ip = req.ip;
   const date = new Date().toISOString();
 
   db.run(
-    "INSERT INTO visitors (ip, date) VALUES (?, ?)",
-    [ip, date],
+    "INSERT INTO visitors (ip, date, pageid) VALUES (?, ?, ?)",
+    [ip, date, pageId],
     function (err) {
       if (err) {
         console.error(err.message);
         res.status(500).send("Erro ao registrar visitante");
       } else {
-        db.get("SELECT COUNT(*) as count FROM visitors", function (err, row) {
+        db.get("SELECT COUNT(*) as count FROM visitors WHERE pageid = ?", [pageId], function (err, row) {
           if (err) {
             console.error(err.message);
             res.status(500).send("Erro ao buscar visitantes");
