@@ -24,11 +24,21 @@ parameters accepted in the URL:
   // (Optional) One of: 'plastic', 'flat', 'flat-square', 'for-the-badge' or 'social'
   // Each offers a different visual design.
   style = 'flat',
+  pageId = 'userName.repoName' // Use the unique string to best represent your page.
 ```
 
 ## Example
+
+```bash
+color       > 8939E4
+style       > for-the-badge
+label       > Visit
+labelColor  > grey
+pageId      > tiquinhonew.BadgeCountVisitors
+```
+
 ```md
-![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey)
+![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey&pageId=tiquinhonew.BadgeCountVisitors)
 ```
 
 ![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey)
