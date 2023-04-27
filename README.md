@@ -43,7 +43,6 @@ pageId      > tiquinhonew.BadgeCountVisitors
 
 ![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey&pageId=tiquinhonew.BadgeCountVisitors)
 
-
 ## Colors
 
 There are three ways to specify `color` and `labelColor`:
