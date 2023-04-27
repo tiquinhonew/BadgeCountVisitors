@@ -1,6 +1,5 @@
 const express = require("express");
-const badgen = require("badgen");
-const shields = require("shields-lightweight");
+const { makeBadge, ValidationError } = require("badge-maker");
 
 const app = express();
 const port = 3000;
@@ -16,7 +15,7 @@ db.serialize(function () {
 // Cria uma rota que retorna o número total de visitantes
 
 app.get("/badge", (req, res) => {
-  var { color, subject, style } = req.query;
+  var { color, labelColor, label, style } = req.query;
   const ip = req.ip;
   const date = new Date().toISOString();
 
@@ -35,27 +34,31 @@ app.get("/badge", (req, res) => {
           } else {
             const count = row.count;
 
-            if(typeof subject === "undefined" || subject === ""){
-                subject = "Visitas"
+            if (typeof label === "undefined" || label === "") {
+              label = "Visitas";
             }
-            if(typeof color === "undefined" || color === ""){
-                color = "red"
+            if (typeof color === "undefined" || color === "") {
+              color = "red";
             }
-            if(typeof style === "undefined" || style === ""){
-                style = "flat"
+            if (typeof labelColor === "undefined" || labelColor === "") {
+                labelColor = "grey";
+            }
+            if (typeof style === "undefined" || style === "") {
+              style = "flat";
             }
 
-            const response =
-              {
-                schemaVersion: 1,
-                label: subject,
-                message: count.toString(),
-                color: color,
-                style: style
-              }
-            ;
+            const format = {
+              label: label,
+              message: count.toString(),
+              color: color,
+              labelColor: labelColor,
+              style: style
+            };
 
-            res.json(response);
+            const svg = makeBadge(format);
+  
+            res.set('Content-Type', 'image/svg+xml');
+            res.send(svg);
           }
         });
       }
