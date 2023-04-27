@@ -43,7 +43,7 @@ app.get("/badge", (req, res) => {
               {
                 schemaVersion: 1,
                 label: subject,
-                message: count,
+                message: count.toString(),
                 color: color,
                 style: style
               }
