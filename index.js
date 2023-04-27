@@ -35,9 +35,15 @@ app.get("/badge", (req, res) => {
           } else {
             const count = row.count;
 
-            subject ? "Visitas" : subject;
-            color ? "red" : color;
-            style ? "flat" : style;
+            if(typeof subject === "undefined" || subject === ""){
+                subject = "Visitas"
+            }
+            if(typeof color === "undefined" || color === ""){
+                color = "red"
+            }
+            if(typeof style === "undefined" || style === ""){
+                style = "flat"
+            }
 
             const response =
               {
