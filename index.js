@@ -3,7 +3,7 @@ const badgen = require("badgen");
 const shields = require("shields-lightweight");
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 // Cria uma tabela no SQLite para armazenar informações de visitantes
 const sqlite3 = require("sqlite3").verbose();
