@@ -3,7 +3,7 @@ const badgen = require("badgen");
 const shields = require("shields-lightweight");
 
 const app = express();
-const port = 80;
+const port = 3000;
 
 // Cria uma tabela no SQLite para armazenar informações de visitantes
 const sqlite3 = require("sqlite3").verbose();
@@ -35,9 +35,9 @@ app.get("/badge", (req, res) => {
           } else {
             const count = row.count;
 
-            subject ? subject : "Visitas";
-            color ? color : "red";
-            style ? style : "flat";
+            subject ? "Visitas" : subject;
+            color ? "red" : color;
+            style ? "flat" : style;
 
             const response =
               {
