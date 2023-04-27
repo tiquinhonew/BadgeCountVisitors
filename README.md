@@ -1,13 +1,15 @@
 # Badge Count Visitors
 
 A visit counter badge to include in your readme
+
 ![Visit](https://badgecountvisitors.onrender.com/badge)
+
 ## Usage
 
-### GET
+### Markdown
 
-```sh
-curl --location 'https://badgecountvisitors.onrender.com/badge?color=8939E4'
+```md
+![Visit](https://badgecountvisitors.onrender.com/badge)
 ```
 
 ## Parameters
@@ -15,8 +17,7 @@ curl --location 'https://badgecountvisitors.onrender.com/badge?color=8939E4'
 parameters accepted in the URL:
 
 ```js
-  label = 'build',  // (Optional) Badge label
-  message = 'passed',  // (Required) Badge message
+  label = 'Visit',  // (Optional) Badge label
   labelColor = '#555',  // (Optional) Label color
   color = '#4c1',  // (Optional) Message color
 
@@ -24,6 +25,14 @@ parameters accepted in the URL:
   // Each offers a different visual design.
   style = 'flat',
 ```
+
+## Example
+```md
+![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey)
+```
+
+![Visit](https://badgecountvisitors.onrender.com/badge?color=8939E4&style=for-the-badge&label=Visit&labelColor=grey)
+
 
 ## Colors
 
