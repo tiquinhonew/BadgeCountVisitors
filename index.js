@@ -18,6 +18,7 @@ app.get("/badge", (req, res) => {
   var { color, labelColor, label, style, pageId } = req.query;
   const ip = req.ip;
   const date = new Date().toISOString();
+  const expiryTime = new Date(Date.now() - 10 * 60 * 1000); // Define a data e hora de expiração 10 minutos atrás em relação ao horário atual
 
   db.run(
     "INSERT INTO visitors (ip, date, pageid) VALUES (?, ?, ?)",
@@ -58,6 +59,8 @@ app.get("/badge", (req, res) => {
             const svg = makeBadge(format);
   
             res.set('Content-Type', 'image/svg+xml');
+            res.set('Cache-Control', 'no-cache,max-age=0,no-store,s-maxage=0,proxy-revalidate');
+            res.set('Expires', expiryTime.toUTCString() );  
             res.send(svg);
           }
         });
