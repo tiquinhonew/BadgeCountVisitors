@@ -59,8 +59,12 @@ app.get("/badge", (req, res) => {
             const svg = makeBadge(format);
   
             res.set('Content-Type', 'image/svg+xml');
+<<<<<<< HEAD
             res.set('Cache-Control', 'no-cache,max-age=0,no-store,s-maxage=0,proxy-revalidate');
             res.set('Expires', expiryTime.toUTCString() );  
+=======
+            res.set('Cache-Control', 'no-cache');
+>>>>>>> 54da9d491c9105dbc6da91070558c1f528ce41e6
             res.send(svg);
           }
         });
